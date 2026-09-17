@@ -71,3 +71,37 @@
         <button class="primary-btn" onclick="updateCalculator()">Calculate &amp; Render</button>
         <div id="status">Loading Python runtime...</div>
       </div>
+
+      <!-- Metrics & Visualization -->
+      <div class="card">
+        <h2>Computed Attributes (Shape A)</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-label">Area</span>
+            <span class="stat-value" id="statArea">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Perimeter</span>
+            <span class="stat-value" id="statPerimeter">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Diagonal</span>
+            <span class="stat-value" id="statDiagonal">-</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Shape B Fits Inside</span>
+            <span class="stat-value" id="statFits">-</span>
+          </div>
+        </div>
+
+        <div class="repr-tag" id="shapeRepr">Rectangle(...)</div>
+
+        <h3>ASCII Output (get_picture)</h3>
+        <pre id="pictureDisplay">Loading...</pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
