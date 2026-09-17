@@ -30,3 +30,39 @@ async function initPython() {
 }
 
 initPython();
+
+function toggleInputs(prefix) {
+  const type = document.getElementById(`shape${prefix}Type`).value;
+  const isSquare = type === "square";
+
+  document.getElementById(`row${prefix}Width`).classList.toggle("hidden", isSquare);
+  document.getElementById(`row${prefix}Height`).classList.toggle("hidden", isSquare);
+  document.getElementById(`row${prefix}Side`).classList.toggle("hidden", !isSquare);
+}
+
+function updateCalculator() {
+  if (!calculateMetricsPy) return;
+
+  const typeA = document.getElementById("shapeAType").value;
+  const aW = document.getElementById("shapeAWidth").value || 1;
+  const aH = document.getElementById("shapeAHeight").value || 1;
+  const aS = document.getElementById("shapeASide").value || 1;
+
+  const typeB = document.getElementById("shapeBType").value;
+  const bW = document.getElementById("shapeBWidth").value || 1;
+  const bH = document.getElementById("shapeBHeight").value || 1;
+  const bS = document.getElementById("shapeBSide").value || 1;
+
+  // Call the Python function as a standard JS function
+  const pyMap = calculateMetricsPy(typeA, aW, aH, aS, typeB, bW, bH, bS);
+  const results = pyMap.toJs();
+  pyMap.destroy();
+
+  // Populate UI
+  document.getElementById("statArea").innerText = results.get("area");
+  document.getElementById("statPerimeter").innerText = results.get("perimeter");
+  document.getElementById("statDiagonal").innerText = results.get("diagonal");
+  document.getElementById("statFits").innerText = results.get("fits");
+  document.getElementById("shapeRepr").innerText = results.get("repr");
+  document.getElementById("pictureDisplay").innerText = results.get("picture");
+}
