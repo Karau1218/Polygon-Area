@@ -47,3 +47,24 @@ class Square(Rectangle):
 
     def __str__(self):
         return f"Square(side={self.width})"
+
+def calculate_metrics(type_a, a_w, a_h, a_s, type_b, b_w, b_h, b_s):
+    """Bridge function called directly by JavaScript via Pyodide."""
+    if type_a == "rectangle":
+        shape_a = Rectangle(int(a_w), int(a_h))
+    else:
+        shape_a = Square(int(a_s))
+
+    if type_b == "rectangle":
+        shape_b = Rectangle(int(b_w), int(b_h))
+    else:
+        shape_b = Square(int(b_s))
+
+    return {
+        "area": shape_a.get_area(),
+        "perimeter": shape_a.get_perimeter(),
+        "diagonal": round(shape_a.get_diagonal(), 2),
+        "fits": shape_a.get_amount_inside(shape_b),
+        "repr": str(shape_a),
+        "picture": shape_a.get_picture(),
+    }
